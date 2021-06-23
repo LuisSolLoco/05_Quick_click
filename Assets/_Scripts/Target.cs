@@ -46,6 +46,19 @@ public class Target : MonoBehaviour
         return Random.Range(-maxTorque, maxTorque);
     }
 
+private void OnMouseOver()
+{
+        
+    Destroy(gameObject);
+}
+
+private void OnTriggerEnter(Collider other)
+{
+    if (other.CompareTag("killZone"))
+    {
+        Destroy(gameObject);
+    }
+}
     // Update is called once per frame
     void Update()
     {
