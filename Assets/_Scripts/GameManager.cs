@@ -3,15 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 
 {
     
-public float spawnRate = 1.0f;
+    private float spawnRate = 1.0f;
 
-
+    public TextMeshProUGUI scoreText;
     public List<GameObject> targetPrefabs;
+
+    private int score;
     // Start is called before the first frame update
 
    
@@ -19,6 +22,8 @@ public float spawnRate = 1.0f;
     void Start()
     {
         StartCoroutine(SpawnTarget());
+        score = 0;
+        scoreText.text = "Score: " + score;
     }
 
     // Update is called once per frame
