@@ -44,7 +44,7 @@ get
     // Update is called once per frame
     IEnumerator SpawnTarget()
     {
-        while (true)
+        while (true && !gameOverText.IsActive())
         {
             yield return new WaitForSeconds(spawnRate);
             int index = Random.Range(0,targetPrefabs.Count );
@@ -69,7 +69,7 @@ IEnumerator waitSeconds()
 private void SetGameOver()
 {
     gameOverText.gameObject.SetActive(true);
-    Time.timeScale = 0;
+    //Time.timeScale = 0;
     StartCoroutine(waitSeconds());
 }
 }
