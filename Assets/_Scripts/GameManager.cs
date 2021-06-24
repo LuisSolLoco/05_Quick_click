@@ -4,12 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using TMPro;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 
 {
-    
+    public enum GameState
+    {
+        loading,
+        inGame,
+        gameOver
+    }
+
+    public GameState gameState;
     private float spawnRate = 1.0f;
 
     public TextMeshProUGUI scoreText;
@@ -35,7 +43,7 @@ get
 
     void Start()
     {
-
+        gameState = GameState.inGame;
         StartCoroutine(SpawnTarget());
         score = 0;
        UpdateScore(0);
@@ -44,7 +52,8 @@ get
     // Update is called once per frame
     IEnumerator SpawnTarget()
     {
-        while (true && !gameOverText.IsActive())
+        
+        while (gameState==GameState.inGame)
         {
             yield return new WaitForSeconds(spawnRate);
             int index = Random.Range(0,targetPrefabs.Count );
@@ -63,11 +72,12 @@ get
 
 IEnumerator waitSeconds()
 {
-    yield return new WaitForSeconds(5);
+    yield return new WaitForSeconds(10);
     SceneManager.LoadScene("Prototype 5");
 }
 private void SetGameOver()
 {
+    gameState = GameState.gameOver;
     gameOverText.gameObject.SetActive(true);
     //Time.timeScale = 0;
     StartCoroutine(waitSeconds());

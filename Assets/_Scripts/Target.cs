@@ -56,13 +56,15 @@ public class Target : MonoBehaviour
 
 private void OnMouseOver()
 {
-        
-    Destroy(gameObject);
-    Instantiate(explosionParticle, transform.position,explosionParticle.transform.rotation);
-    gameManager.SendMessage("UpdateScore",pointValue);
-    if (gameObject.CompareTag("badGuys"))
+    if (gameManager.gameState == GameManager.GameState.inGame)
     {
-        gameManager.SendMessage("SetGameOver");
+        Destroy(gameObject);
+        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+        gameManager.SendMessage("UpdateScore", pointValue);
+        if (gameObject.CompareTag("badGuys"))
+        {
+            gameManager.SendMessage("SetGameOver");
+        }
     }
 }
 
@@ -71,18 +73,21 @@ private void OnTriggerEnter(Collider other)
     if (other.CompareTag("killZone"))
     {
         Destroy(gameObject);
-        if (pointValue>0)
+        if (gameManager.gameState == GameManager.GameState.inGame)
         {
-            
-            gameManager.SendMessage("UpdateScore",-10);
-            if (gameObject.CompareTag("badGuys"))
+            if (pointValue > 0)
             {
-                gameManager.SendMessage("SetGameOver");
+
+                gameManager.SendMessage("UpdateScore", -10);
+                if (gameObject.CompareTag("badGuys"))
+                {
+                    gameManager.SendMessage("SetGameOver");
+                }
             }
-        }
-        else
-        {
-            gameManager.SendMessage("UpdateScore",50);
+            else
+            {
+                gameManager.SendMessage("UpdateScore", 50);
+            }
         }
     }
 }
