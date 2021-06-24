@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     private float spawnRate = 1.0f;
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameOverText;
     public List<GameObject> targetPrefabs;
 
     private int _score;
@@ -33,6 +35,7 @@ get
 
     void Start()
     {
+
         StartCoroutine(SpawnTarget());
         score = 0;
        UpdateScore(0);
@@ -57,6 +60,18 @@ get
         score += ScoreToAdd;
         scoreText.text = "Score: " + score;
     }
+
+IEnumerator waitSeconds()
+{
+    yield return new WaitForSeconds(5);
+    SceneManager.LoadScene("Prototype 5");
+}
+private void SetGameOver()
+{
+    gameOverText.gameObject.SetActive(true);
+    Time.timeScale = 0;
+    StartCoroutine(waitSeconds());
+}
 }
 
 

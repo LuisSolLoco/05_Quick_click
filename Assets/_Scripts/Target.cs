@@ -60,6 +60,10 @@ private void OnMouseOver()
     Destroy(gameObject);
     Instantiate(explosionParticle, transform.position,explosionParticle.transform.rotation);
     gameManager.SendMessage("UpdateScore",pointValue);
+    if (gameObject.CompareTag("badGuys"))
+    {
+        gameManager.SendMessage("SetGameOver");
+    }
 }
 
 private void OnTriggerEnter(Collider other)
