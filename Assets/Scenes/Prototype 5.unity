@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 182532eedf720954fb6fbd9601c8469d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 1
+  scoreText: {fileID: 340496997}
   targetPrefabs:
   - {fileID: 2592001089704624627, guid: 5d1da4126ef133e4484f8a9192a5ecf6, type: 3}
   - {fileID: 2342276704093952014, guid: 9434db7b19ecc75438edd0e082f55e0d, type: 3}

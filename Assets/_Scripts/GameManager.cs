@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(SpawnTarget());
         score = 0;
-        scoreText.text = "Score: " + score;
+       UpdateScore(0);
     }
 
     // Update is called once per frame
@@ -35,6 +35,15 @@ public class GameManager : MonoBehaviour
             int index = Random.Range(0,targetPrefabs.Count );
             Instantiate(targetPrefabs[index]);
         }
+    }
+/// <summary>
+/// Actualiza la puntuacion
+/// </summary>
+/// <param name="ScoreToAdd">numero de puntos a añadir</param>
+    private void UpdateScore(int ScoreToAdd)
+    {
+        score += ScoreToAdd;
+        scoreText.text = "Score: " + score;
     }
 }
 

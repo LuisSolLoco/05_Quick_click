@@ -11,8 +11,8 @@ public class Target : MonoBehaviour
         maxTorque = 10,
         xRange = 4,
         ySpawnPos = -6;
-    
-    
+
+    private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +20,8 @@ public class Target : MonoBehaviour
         _rigidbody.AddForce(RandomForce(),ForceMode.Impulse);
         _rigidbody.AddTorque(RandomTorque(),RandomTorque(),RandomTorque(),ForceMode.Impulse);
         transform.position = RandomSpawnPos();
+        // gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 /// <summary>
 /// Genera una posicion aleatoria
@@ -50,6 +52,7 @@ private void OnMouseOver()
 {
         
     Destroy(gameObject);
+    gameManager.SendMessage("UpdateScore",10);
 }
 
 private void OnTriggerEnter(Collider other)
