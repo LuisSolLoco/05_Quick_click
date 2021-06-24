@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Target : MonoBehaviour
 {
@@ -12,9 +13,11 @@ public class Target : MonoBehaviour
         xRange = 4,
         ySpawnPos = -6;
 
+    public ParticleSystem explosionParticle;
     public int pointValue;
 
     private GameManager gameManager;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,7 @@ public class Target : MonoBehaviour
         transform.position = RandomSpawnPos();
         // gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         gameManager = FindObjectOfType<GameManager>();
+
     }
 /// <summary>
 /// Genera una posicion aleatoria
@@ -54,6 +58,7 @@ private void OnMouseOver()
 {
         
     Destroy(gameObject);
+    Instantiate(explosionParticle, transform.position,explosionParticle.transform.rotation);
     gameManager.SendMessage("UpdateScore",pointValue);
 }
 
@@ -64,7 +69,8 @@ private void OnTriggerEnter(Collider other)
         Destroy(gameObject);
         if (pointValue>0)
         {
-            gameManager.SendMessage("UpdateScore",-10);   
+            
+            gameManager.SendMessage("UpdateScore",-10);
         }
         else
         {
