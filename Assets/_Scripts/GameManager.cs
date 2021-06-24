@@ -14,7 +14,19 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public List<GameObject> targetPrefabs;
 
-    private int score;
+    private int _score;
+
+    private int score
+    {
+        set
+        {
+            _score = Mathf.Max(value, 0);
+        }
+get
+{
+    return _score;
+}
+    }
     // Start is called before the first frame update
 
    
