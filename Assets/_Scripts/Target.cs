@@ -12,6 +12,8 @@ public class Target : MonoBehaviour
         xRange = 4,
         ySpawnPos = -6;
 
+    public int pointValue;
+
     private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
@@ -52,7 +54,7 @@ private void OnMouseOver()
 {
         
     Destroy(gameObject);
-    gameManager.SendMessage("UpdateScore",10);
+    gameManager.SendMessage("UpdateScore",pointValue);
 }
 
 private void OnTriggerEnter(Collider other)
@@ -60,6 +62,10 @@ private void OnTriggerEnter(Collider other)
     if (other.CompareTag("killZone"))
     {
         Destroy(gameObject);
+        if (pointValue>0)
+        {
+            gameManager.SendMessage("UpdateScore",-10);   
+        }
     }
 }
     // Update is called once per frame
