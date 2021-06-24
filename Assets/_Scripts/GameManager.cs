@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
     public List<GameObject> targetPrefabs;
-
+    public GameObject titleScreen;
     private int _score;
 
     private int score
@@ -43,13 +43,6 @@ get
 
    
 
-    void Start()
-    {
-        gameState = GameState.inGame;
-        StartCoroutine(SpawnTarget());
-        score = 0;
-       UpdateScore(0);
-    }
 
     // Update is called once per frame
     IEnumerator SpawnTarget()
@@ -78,10 +71,23 @@ private void SetGameOver()
     gameState = GameState.gameOver;
     gameOverText.gameObject.SetActive(true);
     restartButton.gameObject.SetActive(true);
+    
     //Time.timeScale = 0;
     //StartCoroutine(waitSeconds());
 }
 
+/// <summary>
+/// Inicia la partida cambiando el valor del estado del juego
+/// </summary>
+public void startGame()
+{
+    titleScreen.SetActive(false);
+    gameState = GameState.inGame;
+    StartCoroutine(SpawnTarget());
+    score = 0;
+    UpdateScore(0);
+    
+}
 public void RestartGame()
 {
     SceneManager.LoadScene(SceneManager.GetActiveScene().name);

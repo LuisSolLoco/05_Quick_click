@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 83297276}
   - component: {fileID: 83297279}
-  - component: {fileID: 83297278}
   - component: {fileID: 83297277}
   m_Layer: 5
   m_Name: PanelButtons
@@ -190,36 +189,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &83297278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 83297275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &83297279
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -268,6 +237,7 @@ MonoBehaviour:
   - {fileID: 3718582928622989038, guid: 4f55e756dae01094594b4b7f9e70f4ca, type: 3}
   - {fileID: 7280130183842081275, guid: 067a4cb42d75b5b4fa16fb52896032ce, type: 3}
   - {fileID: 2378518798861446839, guid: 1f1df36abb7edca4f9a9cee31674aa29, type: 3}
+  titleScreen: {fileID: 971352030}
 --- !u!4 &83720194
 Transform:
   m_ObjectHideFlags: 0
