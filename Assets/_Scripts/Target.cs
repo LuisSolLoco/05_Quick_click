@@ -66,6 +66,10 @@ private void OnTriggerEnter(Collider other)
         {
             gameManager.SendMessage("UpdateScore",-10);   
         }
+        else
+        {
+            gameManager.SendMessage("UpdateScore",50);
+        }
     }
 }
     // Update is called once per frame
