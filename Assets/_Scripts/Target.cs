@@ -75,6 +75,10 @@ private void OnTriggerEnter(Collider other)
         {
             
             gameManager.SendMessage("UpdateScore",-10);
+            if (gameObject.CompareTag("badGuys"))
+            {
+                gameManager.SendMessage("SetGameOver");
+            }
         }
         else
         {
