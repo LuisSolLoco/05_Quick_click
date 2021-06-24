@@ -72,7 +72,7 @@ private void OnTriggerEnter(Collider other)
 {
     if (other.CompareTag("killZone"))
     {
-        Destroy(gameObject);
+        
         if (gameManager.gameState == GameManager.GameState.inGame)
         {
             if (pointValue > 0)
@@ -90,6 +90,7 @@ private void OnTriggerEnter(Collider other)
             }
         }
     }
+    Destroy(gameObject);
 }
     // Update is called once per frame
     void Update()

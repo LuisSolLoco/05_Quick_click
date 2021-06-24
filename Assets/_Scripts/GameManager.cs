@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
+    public Button restartButton;
     public List<GameObject> targetPrefabs;
 
     private int _score;
@@ -70,17 +72,19 @@ get
         scoreText.text = "Score: " + score;
     }
 
-IEnumerator waitSeconds()
-{
-    yield return new WaitForSeconds(10);
-    SceneManager.LoadScene("Prototype 5");
-}
+
 private void SetGameOver()
 {
     gameState = GameState.gameOver;
     gameOverText.gameObject.SetActive(true);
+    restartButton.gameObject.SetActive(true);
     //Time.timeScale = 0;
-    StartCoroutine(waitSeconds());
+    //StartCoroutine(waitSeconds());
+}
+
+public void RestartGame()
+{
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 }
 }
 
