@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 
     public GameState gameState;
     private float spawnRate = 1.0f;
-
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
@@ -79,8 +78,10 @@ private void SetGameOver()
 /// <summary>
 /// Inicia la partida cambiando el valor del estado del juego
 /// </summary>
-public void startGame()
+/// <param name="difficulty">grado de dificultad del juego</param>
+public void startGame(int difficulty)
 {
+    spawnRate /=  difficulty;
     titleScreen.SetActive(false);
     gameState = GameState.inGame;
     StartCoroutine(SpawnTarget());
