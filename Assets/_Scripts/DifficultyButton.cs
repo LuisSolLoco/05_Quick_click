@@ -10,6 +10,8 @@ public class DifficultyButton : MonoBehaviour
     private GameManager gameManager;
     [Range (1,3) ]
     public int difficulty;
+
+    public int livesCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +22,8 @@ public class DifficultyButton : MonoBehaviour
 
     void setDifficulty()
     {
-
-        gameManager.startGame(difficulty);
+   
+        gameManager.startGame(difficulty,livesCount);
      Debug.Log("Se pulso el boton "+gameObject.name);   
     }
 }

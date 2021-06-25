@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> targetPrefabs;
     public GameObject titleScreen;
     private int _score;
+    private int numberOfLives = 3;
+    public List<GameObject> lives;
 
     private int score
     {
@@ -64,24 +66,66 @@ get
         scoreText.text = "Score: " + score;
     }
 
+public void showMaxScore()
+{
+    int maxScore = PlayerPrefs.GetInt("MAX_SCORE");
+    scoreText.text = "Max score: \n" + maxScore;
+}
 
+private void SetMaxScore()
+{
+    int maxScore = PlayerPrefs.GetInt("MAX_SCORE");
+
+    if (score> maxScore)
+    {
+        PlayerPrefs.SetInt("MAX_SCORE", score);
+        //TODO: si hay nueva puntuacion maxima lanzar cohetes
+    }
+}
 private void SetGameOver()
 {
-    gameState = GameState.gameOver;
-    gameOverText.gameObject.SetActive(true);
-    restartButton.gameObject.SetActive(true);
+    //decremento el numero de vidas en uno
+    
+    numberOfLives--;
+
+    Image heartImage = lives[numberOfLives].GetComponent<Image>();
+    var tempColor = heartImage.color;
+    tempColor.a = 0.30f;
+    heartImage.color = tempColor;
+    if (numberOfLives <= 0)
+    {
+        SetMaxScore();
+
+
+        gameState = GameState.gameOver;
+        gameOverText.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(true);
+    }
     
     //Time.timeScale = 0;
     //StartCoroutine(waitSeconds());
+}
+
+private void Start()
+{
+    
+    showMaxScore(); 
 }
 
 /// <summary>
 /// Inicia la partida cambiando el valor del estado del juego
 /// </summary>
 /// <param name="difficulty">grado de dificultad del juego</param>
-public void startGame(int difficulty)
+public void startGame(int difficulty,int livesCount)
 {
     spawnRate /=  difficulty;
+    numberOfLives = livesCount;
+
+    
+    for (int i = 0; i < numberOfLives; i++)
+    {
+        lives[i].SetActive(true);
+    }
     titleScreen.SetActive(false);
     gameState = GameState.inGame;
     StartCoroutine(SpawnTarget());
